@@ -90,7 +90,10 @@ exports.getVendorsFrequency = functions.https.onRequest((req, res) => {
             var object = resultMap[key];
             object.frequency = (frequencyMap[key] * 100) / receiptsFrequency;
         }
-        res.send(resultMap);
+        res.send({
+            "success": true,
+            "data": resultMap
+        });
     });
     //http://localhost:5000/firetest-cc367/us-central1/dashboard?ttt=2222&__=5656
     // res.send({msg: "Hello Dashboard", data: req.query.ttt, method: req.method, dataPost: req.body || {}});
@@ -161,3 +164,9 @@ function getDatabaseReference(name, userID) {
 function log(message) {
     console.log("-----> [Firebase log] " + message);
 }
+
+//============================================================
+//                        USEFULL LINKS
+//============================================================
+
+// https://firebase.google.com/docs/cloud-messaging/admin/send-messages?authuser=1

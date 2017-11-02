@@ -1,0 +1,28 @@
+[debug] [2017-11-02T14:54:20.151Z] ----------------------------------------------------------------------
+[debug] [2017-11-02T14:54:20.154Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2017-11-02T14:54:20.155Z] CLI Version:   3.14.0
+[debug] [2017-11-02T14:54:20.155Z] Platform:      darwin
+[debug] [2017-11-02T14:54:20.155Z] Node Version:  v6.11.1
+[debug] [2017-11-02T14:54:20.156Z] Time:          Thu Nov 02 2017 16:54:20 GMT+0200 (EET)
+[debug] [2017-11-02T14:54:20.156Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-02T14:54:20.178Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-02T14:54:20.178Z] > authorizing via signed-in user
+[debug] [2017-11-02T14:54:20.182Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/firetest-cc367  
+ Thu Nov 02 2017 16:54:20 GMT+0200 (EET)
+[debug] [2017-11-02T14:54:21.140Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-02T14:54:21.141Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/firetest-cc367/tokens  
+ Thu Nov 02 2017 16:54:21 GMT+0200 (EET)
+[debug] [2017-11-02T14:54:22.111Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/dlernatovich/Documents/Developing/FirebaseApp/App1'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2017-11-02T14:54:22.752Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/firetest-cc367  
+ Thu Nov 02 2017 16:54:22 GMT+0200 (EET)
+[debug] [2017-11-02T14:54:22.753Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/firetest-cc367/apiKeys  
+ Thu Nov 02 2017 16:54:22 GMT+0200 (EET)
+[debug] [2017-11-02T14:54:23.847Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-02T14:54:23.907Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: getVendorsFrequency: http://localhost:5000/firetest-cc367/us-central1/getVendorsFrequency
+[info] ✔  functions: getCategoriesFrequency: http://localhost:5000/firetest-cc367/us-central1/getCategoriesFrequency
