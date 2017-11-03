@@ -1,31 +1,30 @@
-[debug] [2017-11-03T15:29:12.528Z] ----------------------------------------------------------------------
-[debug] [2017-11-03T15:29:12.532Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions
-[debug] [2017-11-03T15:29:12.533Z] CLI Version:   3.14.0
-[debug] [2017-11-03T15:29:12.533Z] Platform:      darwin
-[debug] [2017-11-03T15:29:12.533Z] Node Version:  v6.11.1
-[debug] [2017-11-03T15:29:12.533Z] Time:          Fri Nov 03 2017 17:29:12 GMT+0200 (EET)
-[debug] [2017-11-03T15:29:12.533Z] ----------------------------------------------------------------------
+[debug] [2017-11-03T15:45:07.251Z] ----------------------------------------------------------------------
+[debug] [2017-11-03T15:45:07.255Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve --only functions
+[debug] [2017-11-03T15:45:07.255Z] CLI Version:   3.14.0
+[debug] [2017-11-03T15:45:07.255Z] Platform:      darwin
+[debug] [2017-11-03T15:45:07.256Z] Node Version:  v6.11.1
+[debug] [2017-11-03T15:45:07.256Z] Time:          Fri Nov 03 2017 17:45:07 GMT+0200 (EET)
+[debug] [2017-11-03T15:45:07.256Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2017-11-03T15:29:12.551Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2017-11-03T15:29:12.551Z] > authorizing via signed-in user
-[debug] [2017-11-03T15:29:12.554Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/firetest-cc367  
- Fri Nov 03 2017 17:29:12 GMT+0200 (EET)
-[debug] [2017-11-03T15:29:13.907Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-03T15:29:13.908Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/firetest-cc367/tokens  
- Fri Nov 03 2017 17:29:13 GMT+0200 (EET)
-[debug] [2017-11-03T15:29:14.685Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-03T15:45:07.277Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-03T15:45:07.278Z] > authorizing via signed-in user
+[debug] [2017-11-03T15:45:07.280Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/firetest-cc367  
+ Fri Nov 03 2017 17:45:07 GMT+0200 (EET)
+[debug] [2017-11-03T15:45:08.479Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-03T15:45:08.481Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/firetest-cc367/tokens  
+ Fri Nov 03 2017 17:45:08 GMT+0200 (EET)
+[debug] [2017-11-03T15:45:12.788Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/dlernatovich/Documents/Developing/FirebaseApp/App1'...
 [info] 
 [info] i  functions: Preparing to emulate functions.
-[debug] [2017-11-03T15:29:15.140Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/firetest-cc367  
- Fri Nov 03 2017 17:29:15 GMT+0200 (EET)
-[debug] [2017-11-03T15:29:15.141Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/firetest-cc367/apiKeys  
- Fri Nov 03 2017 17:29:15 GMT+0200 (EET)
-[debug] [2017-11-03T15:29:16.204Z] <<< HTTP RESPONSE 200
-[debug] [2017-11-03T15:29:16.301Z] <<< HTTP RESPONSE 200
-[info] ✔  functions: getCategoriesFrequency: http://localhost:5000/firetest-cc367/us-central1/getCategoriesFrequency
+[debug] [2017-11-03T15:45:13.214Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/firetest-cc367  
+ Fri Nov 03 2017 17:45:13 GMT+0200 (EET)
+[debug] [2017-11-03T15:45:13.215Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/firetest-cc367/apiKeys  
+ Fri Nov 03 2017 17:45:13 GMT+0200 (EET)
+[debug] [2017-11-03T15:45:14.355Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-03T15:45:14.598Z] <<< HTTP RESPONSE 200
 [info] ✔  functions: getVendorsFrequency: http://localhost:5000/firetest-cc367/us-central1/getVendorsFrequency
-[info] ✔  functions: getCategoriesFrequencyMonth: http://localhost:5000/firetest-cc367/us-central1/getCategoriesFrequencyMonth
 [info] ✔  functions: getCategoriesFrequencyYear: http://localhost:5000/firetest-cc367/us-central1/getCategoriesFrequencyYear
+[info] ✔  functions: getCategoriesFrequencyMonth: http://localhost:5000/firetest-cc367/us-central1/getCategoriesFrequencyMonth
 [info] ✔  functions: getCategoriesFrequencyThreeMonth: http://localhost:5000/firetest-cc367/us-central1/getCategoriesFrequencyThreeMonth

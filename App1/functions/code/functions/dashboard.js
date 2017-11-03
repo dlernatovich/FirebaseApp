@@ -10,7 +10,11 @@ const helpers = require('../helpers/helpers');
 /**
  * Method which provide the getting of the dashboard diagram
  */
-module.exports.getCategoriesFrequency = firebase.functions.https.onRequest((req, res) => {
+function getCategories(req, res, monthInterval) {
+    // Create start and end date
+    let endDate = new Date();
+    let startDate = new Date();
+    startDate.setMonth(endDate.getMonth() - interval);
     // Create result Map
     let database = firebase.getDatabaseReference("receipts", req.query.userID);
     let total = req.query.total || 65535;
@@ -28,12 +32,24 @@ module.exports.getCategoriesFrequency = firebase.functions.https.onRequest((req,
             let object = snapshot.child(key);
             // Get category value
             let category = object.child("category").val();
-            // Get previous category value
-            let previousValue = categoriesMap[category] || 0;
-            // Increate previous value
-            categoriesMap[category] = previousValue + 1;
-            // Increase category frequency
-            categoriesFrequency = categoriesFrequency + 1;
+            // Get date
+            let date = new Date(object.child("creationDate").val() || object.child("creation_date").val());
+            helpers.log(startDate + " >= " + date + " <= " + endDate + " = " + helpers.isDateInRange(date, startDate, endDate));
+            if (helpers.isDateInRange(date, startDate, endDate) === true) {
+                // Get previous category value
+                let previousValue = categoriesMap[category] || 0;
+                // Increate previous value
+                categoriesMap[category] = previousValue + 1;
+                // Increase category frequency
+                categoriesFrequency = categoriesFrequency + 1;
+            } else if (monthInterval <= 0) {
+                // Get previous category value
+                let previousValue = categoriesMap[category] || 0;
+                // Increate previous value
+                categoriesMap[category] = previousValue + 1;
+                // Increase category frequency
+                categoriesFrequency = categoriesFrequency + 1;
+            }
         }
         resultMap = helpers.sortMapByValues(categoriesMap, total);
         // Calculate frequency
@@ -46,7 +62,7 @@ module.exports.getCategoriesFrequency = firebase.functions.https.onRequest((req,
             "data": resultMap
         });
     });
-});
+};
 
 /**
  * Method which provide the getting of the dashboard diagram
@@ -106,150 +122,21 @@ module.exports.getVendorsFrequency = firebase.functions.https.onRequest((req, re
  * Method which provide the getting of the dashboard diagram
  */
 module.exports.getCategoriesFrequencyMonth = firebase.functions.https.onRequest((req, res) => {
-    // Create start and end date
-    let endDate = new Date();
-    let startDate = new Date();
-    startDate.setMonth(endDate.getMonth() - 1);
-    // Create result Map
-    let database = firebase.getDatabaseReference("receipts", req.query.userID);
-    let total = req.query.total || 65535;
-    // Frequency variables
-    var categoriesFrequency = 0;
-    // Total variables
-    var categoriesMap = new Map();
-    var resultMap = new Map();
-    // Get data
-    database.on("value", function (snapshot) {
-        // Get keys
-        let keys = snapshot.val();
-        for (let key in keys) {
-            // Get object
-            let object = snapshot.child(key);
-            // Get category value
-            let category = object.child("category").val();
-            // Get date
-            let date = new Date(object.child("creationDate").val() || object.child("creation_date").val());
-            helpers.log(startDate + " >= " + date + " <= " + endDate + " = " + helpers.isDateInRange(date, startDate, endDate));
-            if (helpers.isDateInRange(date, startDate, endDate) === true) {
-                // Get previous category value
-                let previousValue = categoriesMap[category] || 0;
-                // Increate previous value
-                categoriesMap[category] = previousValue + 1;
-                // Increase category frequency
-                categoriesFrequency = categoriesFrequency + 1;
-            }
-        }
-        resultMap = helpers.sortMapByValues(categoriesMap, total);
-        // Calculate frequency
-        for (let key in resultMap) {
-            var object = resultMap[key];
-            object.frequency = (object.value * 100) / categoriesFrequency;
-        }
-        res.send({
-            "success": true,
-            "data": resultMap
-        });
-    });
+    getCategories(req, res, 1);
 });
 
 /**
  * Method which provide the getting of the dashboard diagram
  */
 module.exports.getCategoriesFrequencyThreeMonth = firebase.functions.https.onRequest((req, res) => {
-    // Create start and end date
-    let endDate = new Date();
-    let startDate = new Date();
-    startDate.setMonth(endDate.getMonth() - 3);
-    // Create result Map
-    let database = firebase.getDatabaseReference("receipts", req.query.userID);
-    let total = req.query.total || 65535;
-    // Frequency variables
-    var categoriesFrequency = 0;
-    // Total variables
-    var categoriesMap = new Map();
-    var resultMap = new Map();
-    // Get data
-    database.on("value", function (snapshot) {
-        // Get keys
-        let keys = snapshot.val();
-        for (let key in keys) {
-            // Get object
-            let object = snapshot.child(key);
-            // Get category value
-            let category = object.child("category").val();
-            // Get date
-            let date = new Date(object.child("creationDate").val() || object.child("creation_date").val());
-            helpers.log(startDate + " >= " + date + " <= " + endDate + " = " + helpers.isDateInRange(date, startDate, endDate));
-            if (helpers.isDateInRange(date, startDate, endDate) === true) {
-                // Get previous category value
-                let previousValue = categoriesMap[category] || 0;
-                // Increate previous value
-                categoriesMap[category] = previousValue + 1;
-                // Increase category frequency
-                categoriesFrequency = categoriesFrequency + 1;
-            }
-        }
-        resultMap = helpers.sortMapByValues(categoriesMap, total);
-        // Calculate frequency
-        for (let key in resultMap) {
-            var object = resultMap[key];
-            object.frequency = (object.value * 100) / categoriesFrequency;
-        }
-        res.send({
-            "success": true,
-            "data": resultMap
-        });
-    });
+    getCategories(req, res, 3);
 });
 
 /**
  * Method which provide the getting of the dashboard diagram
  */
 module.exports.getCategoriesFrequencyYear = firebase.functions.https.onRequest((req, res) => {
-    // Create start and end date
-    let endDate = new Date();
-    let startDate = new Date();
-    startDate.setMonth(endDate.getMonth() - 12);
-    // Create result Map
-    let database = firebase.getDatabaseReference("receipts", req.query.userID);
-    let total = req.query.total || 65535;
-    // Frequency variables
-    var categoriesFrequency = 0;
-    // Total variables
-    var categoriesMap = new Map();
-    var resultMap = new Map();
-    // Get data
-    database.on("value", function (snapshot) {
-        // Get keys
-        let keys = snapshot.val();
-        for (let key in keys) {
-            // Get object
-            let object = snapshot.child(key);
-            // Get category value
-            let category = object.child("category").val();
-            // Get date
-            let date = new Date(object.child("creationDate").val() || object.child("creation_date").val());
-            helpers.log(startDate + " >= " + date + " <= " + endDate + " = " + helpers.isDateInRange(date, startDate, endDate));
-            if (helpers.isDateInRange(date, startDate, endDate) === true) {
-                // Get previous category value
-                let previousValue = categoriesMap[category] || 0;
-                // Increate previous value
-                categoriesMap[category] = previousValue + 1;
-                // Increase category frequency
-                categoriesFrequency = categoriesFrequency + 1;
-            }
-        }
-        resultMap = helpers.sortMapByValues(categoriesMap, total);
-        // Calculate frequency
-        for (let key in resultMap) {
-            var object = resultMap[key];
-            object.frequency = (object.value * 100) / categoriesFrequency;
-        }
-        res.send({
-            "success": true,
-            "data": resultMap
-        });
-    });
+    getCategories(req, res, 12);
 });
 
 //============================================================
