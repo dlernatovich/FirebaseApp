@@ -45,5 +45,37 @@ function sortMapByValues(map, total) {
     return resultMap;
 }
 
+/**
+ * Method which provide the show of the firebase object
+ * 
+ * @param {any} firebaseObject instance of the firebase object
+ */
+function showObject(firebaseObject) {
+    for (let key in firebaseObject.val()) {
+        log("Key: " + key + "and Value: " + firebaseObject.child(key).val());
+    }
+}
+
+//============================================================
+//                         DATES
+//============================================================
+
+/**
+ * Method which provide the checking if the date in range of the start date and end date
+ * 
+ * @param {any} date {@link Date} value of the checking
+ * @param {any} startRange {@link Date} value of the start range
+ * @param {any} endRange {@link Date} value of the end range
+ * @returns 
+ */
+function isDateInRange(date, startRange, endRange) {
+    if (date <= endRange && date >= startRange) {
+        return true;
+    }
+    return false;
+}
+
 module.exports.log = log;
 module.exports.sortMapByValues = sortMapByValues;
+module.exports.showObject = showObject;
+module.exports.isDateInRange = isDateInRange;
